@@ -1,5 +1,5 @@
-NAME=bftprintf.a
-SRCS=ft_printf.c
+NAME=libftprintf.a
+SRCS=ft_printf.c ft_flchars.c ft_flnums.c
 OBJS=$(SRCS:.c=.o)
 DEPS=$(SRCS:.c=.d)
 OUTS=./OUTS_AND_DEPS
@@ -11,11 +11,16 @@ all: $(NAME)
 
 $(NAME): $(OBJS) 
 	ar rcs $@ $(OBJS)
+
 %.o: %.c 
 	$(CC) -MMD $(WSF) -I $(INCLUDE) -c $< -o $@ 	 
+
 clean:
 	rm -f $(OBJS) $(DEPS)
-flcean: clean
+
+fclean: clean
 	rm -f $(NAME)
+
 re: fclean all
+
 .PHONY: clean fclean all re

@@ -26,14 +26,22 @@ void ft_printf(char *format, ...)
 
 void	ft_caller(va_list args, t_flags flags)
 {
-	if(flags.type == '%')
+	char	*str;	
+	size_t	len;
+
+	str = NULL;
+	if (flags.type == '%')
 		write(1, "%", 1);	
-	else if(flags.type == 'c'
-		ft_flchar(args, flags);
-	else if(flags.type == 's')
-	{
-		ft_flstr(args, flags);
-	}
+	else if (FT_ strchr("cs", flags.type))
+		len = ft_flchars(&str, args, flags);
+	else if (FT_ strchr("pdiuxX", flags.type))
+		len = ft_flnums(&str, args, flags);
+	if (!str)
+		return ;
+	
+	write(1, str, len);
+	if (str)
+		free(str);
 	return ;
 }
 

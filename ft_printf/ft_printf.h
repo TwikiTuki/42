@@ -14,5 +14,6 @@ typedef struct s_flags
 }	t_flags; 
 void	ft_printf(char *format, ...);
 void	ft_flstr(va_list args, t_flags flags);
-void	ft_flchar(va_list args, t_flags flags);
+size_t	ft_flchars(char **str, va_list args, t_flags flags);
+size_t	ft_flnums(char **str, va_list args, t_flags flags);
 #endif
