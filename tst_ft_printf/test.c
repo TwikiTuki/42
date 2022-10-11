@@ -4,5 +4,6 @@
 
 int main(void)
 {
-	ft_printf("hello%%, %%, %s, %s\n", "hello", "you");
+	
+	ft_printf("hello%s, %s, %s, %s\n", "hello", "you");
 }

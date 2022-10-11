@@ -4,7 +4,9 @@ TS_DIR=./tst_ft_printf/
 WFS= -Wall -Werror -Wextra
 LIBS=ftprintf
 PR_NAME=ft_printf
-$(NAME)
+NAME=test.exe
 
 all:
-	$(CC) $(WFS) $(NAME) -L$(ROOT)$(PR_DIR) -l$(LIBS) -o$(NAME).exe test.c
+	cd $(ROOT)$(PR_DIR); make re
+	$(CC) $(WFS) $(NAME) -L$(ROOT)$(PR_DIR) -l$(LIBS) -o$(NAME) test.c
+	./$(NAME)
