@@ -1,4 +1,4 @@
-NAME=libftprintf.a
+NAME=bftprintf.a
 SRCS=ft_printf.c
 OBJS=$(SRCS:.c=.o)
 DEPS=$(SRCS:.c=.d)

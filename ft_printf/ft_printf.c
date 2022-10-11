@@ -12,36 +12,42 @@ void ft_printf(char *format, ...)
 		if (*format == '%')
 		{
 			flags = ft_getflags(&format);
-			printf("FLAGS POINTER: %p\n", &flags); 	
-			
-			//call function
+			ft_caller(args, flags);	
 		}
 		else
 		{
 			write(1, format, 1); 
-			format++;
 		}	
+		if(*format)
+			format++;
 	}
 	va_end(args);
 }
 
 void	ft_caller(va_list args, t_flags flags)
 {
-	printf("%p%p",&args, &flags);
+	if(flags.type == '%')
+		write(1, "%", 1);	
+	else if(flags.type == 'c'
+		ft_flchar(args, flags);
+	else if(flags.type == 's')
+	{
+		ft_flstr(args, flags);
+	}
 	return ;
 }
 
 t_flags ft_getflags(char **format)
 {
 	t_flags	result;
-
-	while (**format && !strchr(format_types, **format))
+	
+	(*format)++;
+	while (**format && FT_ strchr("cspdiuxX%", **format) == NULL)
 	{
 		(*format)++;
 	}
 	result.type = **format;
-	(*format)++;
-	printf("result type: %c\n", result.type);
+	//printf("|result type: %c|\n", result.type);
 	return (result);
 } 
 
