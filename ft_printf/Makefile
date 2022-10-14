@@ -5,21 +5,26 @@ DEPS=$(SRCS:.c=.d)
 OUTS=./OUTS_AND_DEPS
 INCLUDE=./
 WSF=-Wall -Werror -Wextra
+LIB_MAKE= cd libft && make
 
 all: $(NAME)
+
 -include $(DEPS)
 
 $(NAME): $(OBJS) 
-	ar rcs $@ $(OBJS)
+	$(LIB_MAKE)
+	ar rcs $@ $(OBJS) ./libft/ft_strchr.o ./libft/ft_strlen.o ./libft/ft_strdup.o
 
 %.o: %.c 
 	$(CC) -MMD $(WSF) -I $(INCLUDE) -c $< -o $@ 	 
 
 clean:
-	rm -f $(OBJS) $(DEPS)
+	rm -f $(OBJS) $(DEPS) 
+	$(LIB_MAKE) fclean
 
 fclean: clean
 	rm -f $(NAME)
+	$(LIB_MAKE) clean
 
 re: fclean all
 
