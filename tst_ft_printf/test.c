@@ -151,8 +151,35 @@ void test_numbers(void)
 	test_ints((int) 2147483647, 'i');
 }
 
+void others(void)
+{
+	int ftrs;
+
+	ftrs = ft_printf("|%c|", 'x');
+	printf("\n");
+	printf("ftrs: %d\n", ftrs);
+	ftrs = ft_printf("|%c |", 'x');
+	printf("\n");
+	printf("ftrs: %d\n", ftrs);
+	
+	printf("\n");
+	ft_printf("|");
+	ftrs = ft_printf("%s", "sdaf");
+	ft_printf("|");
+	printf("\n");
+	printf("ftrs: %d\n", ftrs);
+	ft_printf("|");
+	ftrs = ft_printf("%s ", "fdsdsasd");
+	ft_printf("|");
+	printf("\n");
+	printf("ftrs: %d\n", ftrs);
+
+}
+
 int main(void)
 {
+	others();
+	return  (0);
 	test_strings();
 	test_numbers();
 }

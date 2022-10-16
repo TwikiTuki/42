@@ -34,7 +34,7 @@ int	ft_printf(const char *format, ...)
 			return (-1);
 		}
 		count += wrote;
-		if(*format)
+		if(*format) // Useless if?
 			format++;
 	}
 	va_end(args);
@@ -44,7 +44,7 @@ int	ft_printf(const char *format, ...)
 int	ft_caller(va_list args, t_flags flags)
 {
 	char	*str;	
-	size_t	len;
+	int		len;
 
 	str = NULL;
 	len = 0;
@@ -54,17 +54,15 @@ int	ft_caller(va_list args, t_flags flags)
 		len = ft_flchars(&str, args, flags);
 	else if (ft_strchr("pdiuxX", flags.type))
 		len = ft_flnums(&str, args, flags);
-	if (!len && flags.type == 'c') // if the character is \0 returns a 0 len string
-		len = 1;
+	if(len == -1)
+		return (-1);
 	if (!str)
 		return (-1);
+	if (!len && flags.type == 'c') // if the character is \0 returns a 0 len string
+		len += 1; //modified
 	//TODO add padding
-	write(1, str, len);
+	len = write(1, str, len);
 	//TODO add back-padding
-	/*
-	if (str)
-		free(str);
-	*/
 	free(str);
 	return (len);
 }
@@ -80,6 +78,5 @@ t_flags ft_getflags(const char **format)
 	}
 	result.error = **format == '\0';
 	result.type = **format;
-	//printf("|result type: %c|\n", result.type);
 	return (result);
 } 

@@ -6,7 +6,7 @@
 /*   By: jrenau-v <jrenau-v@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 12:37:45 by jrenau-v          #+#    #+#             */
-/*   Updated: 2022/10/14 20:24:10 by jrenau-v         ###   ########.fr       */
+/*   Updated: 2022/10/16 13:21:51 by jrenau-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ size_t ft_flnums(char **str, va_list args, t_flags fl)
 		number = ~number + 1;
 	}
 	*str = ft_base_itoa(number, "0123456789abcdef", sign, fl);
+	if (!*str)
+		return (-1);
 	return (ft_strlen(*str));
 }
 /* i apunta al primer valor que no ha estat escrit, comencant per l'esquerra*/
