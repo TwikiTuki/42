@@ -6,7 +6,7 @@
 /*   By: jrenau-v <jrenau-v@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 12:37:45 by jrenau-v          #+#    #+#             */
-/*   Updated: 2022/10/16 15:07:21 by jrenau-v         ###   ########.fr       */
+/*   Updated: 2022/10/16 19:11:48 by jrenau-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,18 @@
 
 char	*put_prefixes(char *str, char sign, int i, t_flags fl)
 {
+	if ((fl.space && !sign))
+		sign = ' ';
+	if ((fl.plus  && !sign))
+		sign = '+';
 	if (sign)
 	{
 		str[i] = sign;
 		i--;
 	}
-	else if (fl.type == 'p')
+	else if (fl.type == 'p' || (fl.hashtag && ft_strchr("xX", fl.type)))
 	{
-		str[i] = 'x';
+		str[i] = 'x' - (fl.type == 'X') * ('a' - 'A');
 		str[i - 1] = '0';
 		i -= 2;
 	}
@@ -77,7 +81,7 @@ size_t	ft_flnums(char **str, va_list args, t_flags fl)
 
 	sign = '\0';
 	number = get_number(args, fl.type);
-	if (ft_strchr("di", fl.type) && number >= 8000000000000000)
+	if (ft_strchr("di", fl.type) && number >= 0x8000000000000000)
 	{
 		sign = '-';
 		number = ~number + 1;

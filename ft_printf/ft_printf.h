@@ -6,7 +6,7 @@
 /*   By: jrenau-v <jrenau-v@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 15:30:19 by jrenau-v          #+#    #+#             */
-/*   Updated: 2022/10/16 15:31:59 by jrenau-v         ###   ########.fr       */
+/*   Updated: 2022/10/16 19:35:42 by jrenau-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,19 @@
 # include <stdlib.h>
 # include "libft/libft.h"
 
+#include <stdio.h>
 typedef struct s_flags
 {	
 	char	type;	
 	int		error;
+	int		dash;
+	int		zero;
+	int		dot;
+	int		hashtag;
+	int		space;
+	int		plus;  
+	int		padding;
+	int		precision;
 }	t_flags;
 int		ft_printf(const char *format, ...);
 void	ft_flstr(va_list args, t_flags flags);

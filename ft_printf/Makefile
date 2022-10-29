@@ -13,7 +13,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS) 
 	$(LIB_MAKE)
-	ar rcs $@ $(OBJS) ./libft/ft_strchr.o ./libft/ft_strlen.o ./libft/ft_strdup.o
+	ar rcs $@ $(OBJS) ./libft/ft_strchr.o ./libft/ft_strlen.o ./libft/ft_strdup.o ./libft/ft_bzero.o
 
 %.o: %.c 
 	$(CC) -MMD $(WSF) -I $(INCLUDE) -c $< -o $@ 	 

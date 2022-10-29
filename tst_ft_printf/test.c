@@ -153,31 +153,27 @@ void test_numbers(void)
 
 void others(void)
 {
-	int ftrs;
 
-	ftrs = ft_printf("|%c|", 'x');
-	printf("\n");
-	printf("ftrs: %d\n", ftrs);
-	ftrs = ft_printf("|%c |", 'x');
-	printf("\n");
-	printf("ftrs: %d\n", ftrs);
-	
-	printf("\n");
-	ft_printf("|");
-	ftrs = ft_printf("%s", "sdaf");
-	ft_printf("|");
-	printf("\n");
-	printf("ftrs: %d\n", ftrs);
-	ft_printf("|");
-	ftrs = ft_printf("%s ", "fdsdsasd");
-	ft_printf("|");
-	printf("\n");
-	printf("ftrs: %d\n", ftrs);
+	ft_printf("%# x", 255);
+	ft_printf("%# X", 255);
 
+	ft_printf("|% i| ", 255);
+	ft_printf("|% d| ", 255);
+	ft_printf("|% i| ", -255);
+	ft_printf("|% d| ", -255);
+	ft_printf("|%+i| ", -255);
+	ft_printf("|%+d| ", -255);
+	ft_printf("|% i| ", 255);
+	ft_printf("|% d| ", 255);
+	ft_printf("|%+i| ", 255);
+	ft_printf("|%+d| ", 255);
 }
+
 
 int main(void)
 {
+	ft_printf("\+");
+	return;
 	others();
 	return  (0);
 	test_strings();

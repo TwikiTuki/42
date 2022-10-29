@@ -6,7 +6,7 @@
 /*   By: jrenau-v <jrenau-v@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 15:02:50 by jrenau-v          #+#    #+#             */
-/*   Updated: 2022/10/16 15:28:10 by jrenau-v         ###   ########.fr       */
+/*   Updated: 2022/10/29 18:32:35 by jrenau-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,16 +77,69 @@ int	ft_caller(va_list args, t_flags flags)
 	return (len);
 }
 
+void	get_pad_precision(char **format, t_flags *flags)
+{
+	while (**format >= '0' && **format <='9')
+	{
+		flags->padding *= 10;
+		flags->padding += **format + '0';
+		(*format)++;
+	}	
+	if (**format != '.')
+		return ;
+	(*format)++;
+	while (**format >= '0' && **format <= '9')
+	{
+		flags->precision *= 10;
+		flags->precision += **format + '0';
+		(*format)++;
+	}
+}
+
+
+void print_flags(t_flags flags);
 t_flags	ft_getflags(const char **format)
 {
 	t_flags	result;
 
 	(*format)++;
+	ft_bzero(&result, sizeof(t_flags));
 	while (**format && ft_strchr("cspdiuxX%", **format) == NULL)
 	{
+		if(**format == '-')
+			result.dash = 1;
+		if(**format == '0')
+			result.zero = 1;
+		if(**format == '.')
+			result.dot = 1;
+		if(**format == '#')
+			result.hashtag = 1;
+		if(**format == ' ')
+			result.space = 1;
+		if(**format == '+')
+			result.plus = 1;
+		if(**format >= '1' || **format<= '9')
+			get_pad_precision((char **)format, &result);
 		(*format)++;
 	}
 	result.error = **format == '\0';
 	result.type = **format;
+//	print_flags(result);
 	return (result);
+}
+
+
+void print_flags(t_flags flags)
+{
+	printf(" flags: %c err %d, -%d, 0%d, .%d, #%d, sp%d, +%d\n",
+			flags.type,
+			flags.error,
+			flags.dash,
+			flags.zero,
+			flags.dot,
+			flags.hashtag,
+			flags.space,
+			flags.plus
+			);
+
 }
