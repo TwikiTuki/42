@@ -5,11 +5,15 @@
 int	main(void)
 {
 	int	fd;
+	char *line;
 	
 	fd = open("inp_file.txt", O_RDONLY);
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 8; i++)
 	{
-		printf("<<%s>>\n", get_next_line(fd));
+		line = NULL;
+		line = get_next_line(fd);
+		printf("<<%s>>\n", line);
+		free(line);
 	}
 
 }

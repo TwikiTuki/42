@@ -1,6 +1,6 @@
 # include "get_next_line.h"
 
-# define BUFFER_SIZE 4
+# define BUFFER_SIZE 42
 
 void *abort_buffer(char **buffer)
 {
@@ -57,13 +57,15 @@ char *get_next_line(int fd)
 	if(!buffer)
 		return (NULL);
 	readed = 1;
-	while(buffer && twk_strchr(buffer, '\n') == -1 && readed > 0)
+	while(twk_strchr(buffer, '\n') == -1 && readed > 0)
 		readed = fill_buffer(&buffer, fd);
 	if (readed == -1)
 		return (abort_buffer(&buffer));
-	if(readed == 0)
+	else if(twk_strchr(buffer, '\n') == -1)
 	{
-		buffer2 = twk_substr(buffer, 0, twk_strlen(buffer));
+		buffer2 = NULL;
+		if (twk_strlen(buffer) != 0)
+			buffer2 = twk_substr(buffer, 0, twk_strlen(buffer));
 		abort_buffer(&buffer);
 		return(buffer2); 
 	}
