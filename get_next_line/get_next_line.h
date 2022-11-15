@@ -6,7 +6,7 @@
 
 char	*get_next_line(int fd);
 ssize_t	fill_buffer(char **buffer, int fd);
-char	*get_line(char **buffer);
+char	*twk_get_line(char **buffer);
 
 int		twk_strchr(char *str, char c);
 char	*twk_substr(char *s, size_t start, size_t len);

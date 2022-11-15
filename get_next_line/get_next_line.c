@@ -1,7 +1,5 @@
 # include "get_next_line.h"
 
-# define BUFFER_SIZE 42
-
 void *abort_buffer(char **buffer)
 {
 	free(*buffer);
@@ -28,7 +26,7 @@ ssize_t	fill_buffer(char **buffer, int fd)
 	return (readed);
 }
 
-char *get_line(char **buffer)
+char *twk_get_line(char **buffer)
 {
 	int		end;
 	char	*result;
@@ -69,5 +67,5 @@ char *get_next_line(int fd)
 		abort_buffer(&buffer);
 		return(buffer2); 
 	}
-	return (get_line(&buffer));
+	return (twk_get_line(&buffer));
 }
