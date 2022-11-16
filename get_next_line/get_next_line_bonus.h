@@ -3,7 +3,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stddef.h>
-# include <limits.h>
 
 char	*get_next_line(int fd);
 ssize_t	fill_buffer(char **buffer, int fd);

@@ -47,26 +47,28 @@ char *twk_get_line(char **buffer)
 	
 char *get_next_line(int fd)
 {
-	static char	*buffer;
+	static char	*buffer_list[OPEN_MAX];
 	char		*buffer2;
 	ssize_t		readed;
 
-	if(!buffer)
-		buffer = twk_lazzy_calloc(1, sizeof(char)); 
-	if(!buffer)
+	if(fd < 0 || fd > OPEN_MAX)
+		return (NULL);
+	if(!buffer_list[fd])
+		buffer_list[fd] = twk_lazzy_calloc(1, sizeof(char)); 
+	if(!buffer_list[fd])
 		return (NULL);
 	readed = 1;
-	while(readed > 0 && twk_strchr(buffer, '\n') == -1)
-		readed = fill_buffer(&buffer, fd);
+	while(readed > 0 && twk_strchr(buffer_list[fd], '\n') == -1)
+		readed = fill_buffer(&buffer_list[fd], fd);
 	if (readed == -1)
-		return (abort_buffer(&buffer));
-	else if(twk_strchr(buffer, '\n') == -1)
+		return (abort_buffer(&buffer_list[fd]));
+	else if(twk_strchr(buffer_list[fd], '\n') == -1)
 	{
 		buffer2 = NULL;
-		if (twk_strlen(buffer) != 0)
-			buffer2 = twk_substr(buffer, 0, twk_strlen(buffer));
-		abort_buffer(&buffer);
+		if (twk_strlen(buffer_list[fd]) != 0)
+			buffer2 = twk_substr(buffer_list[fd], 0, twk_strlen(buffer_list[fd]));
+		abort_buffer(&buffer_list[fd]);
 		return(buffer2); 
 	}
-	return (twk_get_line(&buffer));
+	return (twk_get_line(&buffer_list[fd]));
 }
