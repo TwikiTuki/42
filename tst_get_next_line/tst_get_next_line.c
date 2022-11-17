@@ -8,6 +8,7 @@ int	main(void)
 	char *line;
 	
 	fd = open("inp_file.txt", O_RDONLY);
+	fd = 60;
 	for (int i = 0; i < 8; i++)
 	{
 		line = NULL;

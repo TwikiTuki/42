@@ -1,8 +1,20 @@
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrenau-v <jrenau-v@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/16 15:26:06 by jrenau-v          #+#    #+#             */
+/*   Updated: 2022/11/17 12:18:23 by jrenau-v         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 # include <stdlib.h>
 # include <unistd.h>
-# include <stddef.h>
+# include <limits.h>
 
 char	*get_next_line(int fd);
 ssize_t	fill_buffer(char **buffer, int fd);
