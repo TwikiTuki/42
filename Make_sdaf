@@ -1,0 +1,11 @@
+NAME=libft.a
+SRC=ft_flchars.c ft_flnums.c ft_printf.c
+OBJS_ND_DEPS=./objs_nd_deps
+OBJS=$(addprefix OBJS_ND_DEPS, $(SRC:.c=.o))
+DEPS=$(addprefix OBJS_ND_DEPS, $(SRC:.c=.d))
+
+$(NAME): $(OBJS) libft.h Makefile
+	ar -rc $(NAME) $(OBJS_ND_DEPS)
+
+
+

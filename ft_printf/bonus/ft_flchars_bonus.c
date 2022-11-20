@@ -6,12 +6,11 @@
 /*   By: jrenau-v <jrenau-v@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 14:03:44 by jrenau-v          #+#    #+#             */
-/*   Updated: 2022/11/17 19:36:44 by jrenau-v         ###   ########.fr       */
+/*   Updated: 2022/11/18 18:47:09 by jrenau-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include "./libft/libft.h"
+#include "ft_printf_bonus.h"
 
 int	ft_flchar(char **str, va_list args, t_flags flags)
 {	

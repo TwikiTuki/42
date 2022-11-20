@@ -6,11 +6,11 @@
 /*   By: jrenau-v <jrenau-v@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 12:37:45 by jrenau-v          #+#    #+#             */
-/*   Updated: 2022/11/17 20:02:16 by jrenau-v         ###   ########.fr       */
+/*   Updated: 2022/11/18 18:44:28 by jrenau-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "ft_printf_bonus.h"
 
 #define FT_BASE_ITOA_STR_LN 20
 

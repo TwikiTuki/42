@@ -172,8 +172,8 @@ void others(void)
 
 int main(void)
 {
-	ft_printf("\+");
-	return;
+	ft_printf("+");
+	return (0);
 	others();
 	return  (0);
 	test_strings();

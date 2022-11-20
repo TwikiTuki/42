@@ -6,7 +6,7 @@
 /*   By: jrenau-v <jrenau-v@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 15:30:19 by jrenau-v          #+#    #+#             */
-/*   Updated: 2022/11/18 16:24:38 by jrenau-v         ###   ########.fr       */
+/*   Updated: 2022/11/18 18:45:42 by jrenau-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include "libft/libft.h"
+# include "../libft/libft.h"
 
 #include <stdio.h>
 typedef struct s_flags

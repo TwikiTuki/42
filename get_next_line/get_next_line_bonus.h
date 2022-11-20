@@ -6,7 +6,7 @@
 /*   By: jrenau-v <jrenau-v@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:26:06 by jrenau-v          #+#    #+#             */
-/*   Updated: 2022/11/17 12:18:23 by jrenau-v         ###   ########.fr       */
+/*   Updated: 2022/11/17 14:38:52 by jrenau-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 420
+# endif
 
 char	*get_next_line(int fd);
 ssize_t	fill_buffer(char **buffer, int fd);

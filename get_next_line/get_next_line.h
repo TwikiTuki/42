@@ -6,7 +6,7 @@
 /*   By: jrenau-v <jrenau-v@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 15:23:07 by jrenau-v          #+#    #+#             */
-/*   Updated: 2022/11/17 12:14:44 by jrenau-v         ###   ########.fr       */
+/*   Updated: 2022/11/17 14:51:19 by jrenau-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 # define GET_NEXT_LINE_H
 # include <stdlib.h>
 # include <unistd.h>
-# include <stddef.h>
+# include <limits.h>
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 420
+# endif
 
 char	*get_next_line(int fd);
 ssize_t	fill_buffer(char **buffer, int fd);

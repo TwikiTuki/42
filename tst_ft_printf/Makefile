@@ -11,4 +11,8 @@ all:
 	$(CC) -fsanitize=address $(WFS) -L$(ROOT)$(PR_DIR) -l$(LIBS) -L$(ROOT)$(PR_DIR)/libft/ -lft -o$(NAME) test.c
 	./$(NAME)
 
+paco:
+	cd $(ROOT)$(PR_DIR); make
+	$(CC) -fsanitize=address $(WFS) -L$(ROOT)$(PR_DIR) -l$(LIBS) -lft -o$(NAME) test.c
+
 .PHONY: all
