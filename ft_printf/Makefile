@@ -1,55 +1,48 @@
-OBJS_ND_DEPS=./objs_nd_deps/
 NAME=libftprintf.a
-SRCS=ft_flnums.c	ft_printf.c	ft_flchars.c	
-OBJS=$(addprefix $(OBJS_ND_DEPS),$(SRCS:.c=.o))
-DEPS=$(addprefix $(OBJS_ND_DEPS),$(SRCS:.c=.d))
-OUTS=./OUTS_AND_DEPS
-INCLUDE=./
+LIBFT=
+OBJS_ND_DEPS=./objs_nd_deps/
+SRC=ft_flchars.c ft_flnums.c ft_printf.c
+OBJS=$(addprefix $(OBJS_ND_DEPS), $(SRC:.c=.o))
+DEPS=$(addprefix $(BJS_ND_DEPS), $(SRC:.c=.d))
+LIBFT_DIR=./libft/
 WSF=-Wall -Werror -Wextra
-LIB_DIR= libft
-
-all: $(NAME)
 
 -include $(DEPS)
+-include $(BONUS_DEPS)
 
-$(NAME): $(OBJS) 
-	cd $(LIB_DIR) && make && cp libft.a ../$(NAME)
-	ar rcs $@ $(OBJS) 
-	
-$(OBJS_ND_DEPS)%.o: %.c  
-	mkdir -p  $(OBJS_ND_DEPS)   
-	$(CC) -MMD $(WSF) -I $(INCLUDE) -c $< -o $@ 	 
+$(NAME): $(OBJS) $(LIBFT_DIR)/*
+	cd $(LIBFT_DIR) && make && cp libft.a ../$(NAME)
+	ar -rc $(@) $(OBJS)
+$(LIBF_DIR)%: ;
+
+$(OBJS_ND_DEPS)%.o: %.c ft_printf.h Makefile
+	mkdir -p $(OBJS_ND_DEPS)
+	$(CC) -MMD $(WSF) -c -o$@ $<
 
 BONUS_DIR=./bonus/
-SRCS_BONUS=ft_flnums_bonus.c	ft_printf_bonus.c	ft_flchars_bonus.c	
-BONUS_SRCS=$(addprefix $(BONUS_DIR)$(OBJS_ND_DEPS), $(SRCS_BONUS))
-BONUS_OBJS=$(addprefix $(BONUS_DIR)$(OBJS_ND_DEPS), $(SRCS_BONUS:.c=.o))
-DEPS_OBJS=$(addprefix $(BONUS_DIR), $(SRCS_BONUS:.c=.d))
+BONUS_SRC=ft_flchars_bonus.c ft_flnums_bonus.c ft_printf_bonus.c
+BONUS_OBJS=$(addprefix $(BONUS_DIR)$(OBJS_ND_DEPS), $(BONUS_SRC:.c=.o))
+BONUS_DEPS=$(addprefix $(BONUS_DIR)$(BJS_ND_DEPS), $(BONUS_SRC:.c=.d))
 
-bonus: $(BONUS_DIR)$(NAME)
+bonus: $(BONUS_OBJS) $(BONUS_DIR) $(LIBFT_DIR)/*
 	touch $(BONUS_DIR)bonus
+	cd $(LIBFT_DIR) && make && cp libft.a ../$(BONUS_DIR)$(NAME)
+	ar -rc $(BONUS_DIR)$(NAME) $(BONUS_OBJS)
 
-$(BONUS_DIR)$(NAME): $(BONUS_OBJS)
-	cd $(LIB_DIR) && make && cp libft.a ../$@
-	ar rcs $@ $(BONUS_OBJS) 
-
-#s/ft_flnums.o: ./bonus/ft_flnums.c  
-$(BONUS_DIR)$(OBJS_ND_DEPS)%.o: $(BONUS_DIR)%.c  
-	mkdir -p  $(BONUS_DIR)$(OBJS_ND_DEPS)   
-	$(CC) -MMD $(WSF) -I $(BONUS)$(INCLUDE) -c $< -o $@ 	 
+$(BONUS_DIR)$(OBJS_ND_DEPS)%.o: $(BONUS_DIR)%.c $(BONUS_DIR)ft_printf_bonus.h Makefile
+	mkdir -p $(BONUS_DIR)$(OBJS_ND_DEPS)
+	$(CC) -MMD $(WSF) -o $(@) -c $(<)
 
 clean:
-	rm -f $(OBJS) $(DEPS) 
-	-cd $(LIB_DIR) fclean
-	-cd $(BONUS_DIR) &&  rm -f $(OBJS) $(DEPS) 
-#	cd $(BONUS_DIR) && cd $(LIB_DIR) && fclean
+	-rm -r $(OBJS_ND_DEPS)
+	-rm -r $(BONUS_DIR)$(OBJS_ND_DEPS)
 
 fclean: clean
-	rm -f $(NAME)
-	-rm -r  $(OBJS_ND_DEPS)
-	cd $(LIB_DIR) clean
-	-cd $(BONUS_DIR) && rm -f $(NAME)
-	-cd $(BONUS_DIR) && rm -r  $(OBJS_ND_DEPS)
-#	cd$(BONUS_DIR) cd $(LIB_DIR) clean
+	-rm $(NAME)
+	-rm $(BONUS_DIR)$(NAME)
 
+prnt:
+	echo $(OBJS_ND_DEPS)
+	echo $(BONUS_OBJS)
 
+.PHONY: clean fclean
