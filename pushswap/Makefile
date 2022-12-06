@@ -4,10 +4,13 @@ PPF= -Wall -Werror -Wextra
 LIB=ft
 LIB_DIR=./libft/
 
-SRCS=push_swap.c psw_stk_basics.c psw_stk_operations.c
 OBJS_ND_DEPS=./objs_nd_deps/
+MAIN=push_swap.o
+SRCS=psw_stk_basics.c psw_stk_operations.c
 OBJS=$(addprefix $(OBJS_ND_DEPS), $(SRCS:.c=.o))
 DEPS=$(addprefix $(OBJS_ND_DEPS), $(SRCS:.c=.d))
+#OBJS=$(addprefix $(OBJS_ND_DEPS), $(SRCS:.c=.o) $(MAIN:.c=.o))
+#DEPS=$(addprefix $(OBJS_ND_DEPS), $(SRCS:.c=.d) $(MAIN:.c=.d))
 
 all: $(NAME)
 
@@ -17,13 +20,22 @@ prnt:
 	echo OBJS $(OBJS)
 	echo DEPS $(DEPS)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(OBJS_ND_DEPS)$(MAIN)
 	make -C $(LIB_DIR)
-	$(CC) $(PPF) $(OBJS) -L $(LIB_DIR) -l $(LIB) -o $(NAME) 
+	$(CC) $(PPF) $^ -L $(LIB_DIR) -l $(LIB) -o $(NAME) 
 
 $(OBJS_ND_DEPS)%.o: %.c
 	mkdir -p $(OBJS_ND_DEPS)
 	$(CC) $(PPF) -MMD -c $< -o $@
+
+test_sdaf2:
+	echo wtf
+	ls ../tst_pushswap/
+
+test%: $(OBJS) ../tst_pushswap/stuff/test%.o
+	make -C $(LIB_DIR)
+	echo what tfk is doing: $@
+	$(CC) $(PPF) $^ -L $(LIB_DIR) -l $(LIB) -o ../tst_pushswap/stuff/$@
 
 clean:
 	-rm -rf $(OBJS_ND_DEPS)
@@ -35,4 +47,5 @@ fclean: clean
 re: fclean all
 
 
-.PHONY: prnt all fclean clean re
+.PHONY: prnt all fclean clean re 
+
