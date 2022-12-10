@@ -6,7 +6,7 @@ LIB_DIR=./libft/
 
 OBJS_ND_DEPS=./objs_nd_deps/
 MAIN=push_swap.o
-SRCS=psw_stk_basics.c psw_stk_operations.c
+SRCS=psw_stk_basics.c psw_stk_operations.c psw_inpsanitize.c
 OBJS=$(addprefix $(OBJS_ND_DEPS), $(SRCS:.c=.o))
 DEPS=$(addprefix $(OBJS_ND_DEPS), $(SRCS:.c=.d))
 #OBJS=$(addprefix $(OBJS_ND_DEPS), $(SRCS:.c=.o) $(MAIN:.c=.o))
@@ -29,12 +29,10 @@ $(OBJS_ND_DEPS)%.o: %.c
 	$(CC) $(PPF) -MMD -c $< -o $@
 
 test_sdaf2:
-	echo wtf
 	ls ../tst_pushswap/
 
 test%: $(OBJS) ../tst_pushswap/stuff/test%.o
 	make -C $(LIB_DIR)
-	echo what tfk is doing: $@
 	$(CC) $(PPF) $^ -L $(LIB_DIR) -l $(LIB) -o ../tst_pushswap/stuff/$@
 
 clean:

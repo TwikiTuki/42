@@ -1,0 +1,64 @@
+#! /bin/sh
+: '
+#echo -n "Enter Number: "
+#read x
+
+#if [ $(x%2) == 0 ]; then
+#if [ $((2 % 2))  == 0 ]
+#if [ $((2 % 2))  == 0 ]
+
+'
+: '
+VAR=VAR $(./stuff/test_checks 001 2 56)
+${EXEC} 001 2 56
+${EXEC} 001 2 56
+
+ec=echo
+VAR=$(${ec} HELLO WORLD$(echo !))
+VAR2=$(${EXEC} 1 56 02)
+echo hi ${VAR}
+echo bye ${VAR2}
+'
+
+echo '\n TESTING psw_clean \n'
+NAME=test_pswclean
+EXEC=./stuff/${NAME}
+echo testing:  ${NAME}
+make ${NAME}
+$(EXEC)
+
+echo '\n<<<<<< COMPILING >>>>>>\n'
+NAME=test_checks
+EXEC=./stuff/${NAME}
+echo testing:  ${NAME}
+make ${NAME}
+
+echo '\n<<<<<< EXECUTING >>>>>>\n'
+
+
+
+echo '\n testing different inputs \n'
+fnc_test()
+{
+	echo testing: $1
+	RES=$(${EXEC} ${1})
+	RES=$(${EXEC} $1)
+	if [ "${RES}" == "Error" ];
+	then
+		echo ERROR
+	else
+		echo OK
+	fi
+	echo
+}
+
+fnc_test "1 02 3 5"
+fnc_test "1 2 3 5"
+fnc_test "-1 2 3 5"
+fnc_test "+1 2 3 5"
+fnc_test "--1 2 3 5"
+fnc_test "-+1 2 3 5"
+fnc_test "2147483647 2 3 5"
+fnc_test "-2147483648 2 3 5"
+fnc_test "2147483648 2 3 5"
+fnc_test "-2147483649 2 3 5"

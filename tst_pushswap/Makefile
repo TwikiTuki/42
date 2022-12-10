@@ -8,6 +8,9 @@ prnt:
 	@echo PRJ_DIR $(PRJ_DIR)
 	@echo TST_DIR $(TST_DIR)
 
+bs_%: test%
+	./$@
+
 test%: $(TST_DIR)test%.o
 	make -C $(PRJ_DIR) $@
 
