@@ -34,9 +34,6 @@ echo testing:  ${NAME}
 make ${NAME}
 
 echo '\n<<<<<< EXECUTING >>>>>>\n'
-
-
-
 echo '\n testing different inputs \n'
 fnc_test()
 {
@@ -52,12 +49,16 @@ fnc_test()
 	echo
 }
 
-fnc_test "1 02 3 5"
 fnc_test "1 2 3 5"
+fnc_test "1 02 3 5"
 fnc_test "-1 2 3 5"
 fnc_test "+1 2 3 5"
 fnc_test "--1 2 3 5"
 fnc_test "-+1 2 3 5"
+fnc_test "0000002147483647 2 3 5"
+fnc_test "+0000002147483647 2 3 5"
+fnc_test "-0000002147483647 2 3 5"
+fnc_test "-+0000002147483647 2 3 5"
 fnc_test "2147483647 2 3 5"
 fnc_test "-2147483648 2 3 5"
 fnc_test "2147483648 2 3 5"

@@ -10,4 +10,6 @@ int	main(int argc, char **argv)
 		ft_printf("Error\n");
 		return (0);
 	}
+	else
+		ft_printf("OK\n");
 }

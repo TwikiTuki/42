@@ -12,7 +12,6 @@ int	psw_check(char **numbers)
 	{
 		if (!psw_check_general(numbers[i]))	
 				return (0);
-		psw_clean(numbers[i]);
 		if (!psw_check_range(numbers[i]))	
 				return (0);
 		i++;
@@ -20,50 +19,43 @@ int	psw_check(char **numbers)
 	return (1);
 }
 
-void psw_clean(char *number)
+static int	psw_find_start(char *inp_num)
 {
-	int i;
-	int sign;
-
-	i = 0;
-	sign = 0;
-	if (number[i] == '-' || number[i] == '+')
-		sign = 1;
-	if (sign)
-		i++;
-	while (number[i] == '0')
-		i++;
-	char *src = number + i;
-	int	len = sizeof(char) * (ft_strlen(number + i) + 1);
-	ft_printf("sign: %d, i: %d, src: >>%s<<, len: %d\n",sign, i , src, len);
-	ft_memmove(number + sign, src, len);
-	ft_printf("fasd\n");
+	int start;
+	
+	start = 0;
+	if (inp_num[start++] == '-')
+		start++;
+	while (inp_num[start++] == '0')
+		start++;
+	return (start);
 }
-
 
 int	psw_check_range(char *inp_num)
 {
 	int		i;
 	int		len;
+	int		start;
 
 	len = ft_strlen(inp_num);
-	if ((inp_num[0] == '-' && ft_strlen(inp_num) < 11) || (inp_num[0] != '-' && ft_strlen(inp_num) < 10))
+	start = psw_find_start(inp_num);
+	len = len - start;
+	ft_printf("len: %d, start: %d, finalLen: %d\n", len, start, len - start);
+	if ((inp_num[0] == '-' && len < 10) || (inp_num[0] != '-' && len < 10))
 		return (1);
-	if ((inp_num[0] == '-' && ft_strlen(inp_num) > 11) || (inp_num[0] != '-' && ft_strlen(inp_num) > 10))
+	if ((inp_num[0] == '-' && len > 10) || (inp_num[0] != '-' && len > 10))
 		return (0);
+	ft_printf("len ok\n");
 	i = 0;
 	while (inp_num[i])
 	{
 		if (inp_num[0] == '-')
 		{
-			if (inp_num[i] > MIN_INT_STR[i])	
+			if (inp_num[i + start] > MIN_INT_STR[i + 1])	
 				return (0);
 		}
-		else
-		{
-			if (inp_num[i] > MAX_INT_STR[i])	
+		else if (inp_num[i + start] > MAX_INT_STR[i])	
 				return (0);
-		}
 		i++;
 	}
 	return (1);
@@ -76,8 +68,6 @@ int	psw_check_general(char *inp_num)
 	i = 0;
 	if (inp_num[i] == '-' || inp_num[i] == '+')
 		i++;
-	if (inp_num[i] == '0')
-		return (0);
 	while (inp_num[i])
 	{
 		if (inp_num[i] < '0'  || inp_num[i] > '9')
