@@ -1,3 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   psw_stk_basics.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrenau-v <jrenau-v@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/14 15:38:30 by jrenau-v          #+#    #+#             */
+/*   Updated: 2022/12/15 20:11:09 by jrenau-v         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
+
 # include "push_swap.h"
 
 t_stk_node 	*stk_last(t_stk_node *stack)
@@ -45,6 +59,7 @@ t_stk_node *stk_init(char **numbers, size_t len)
 		}
 		lst_node = nw_node;
 	}
+	psw_getindexes(&nw_node);
 	return (nw_node);
 }
 
@@ -58,7 +73,33 @@ void	stk_print(t_stk_node	*stk)
 
 	while (stk)
 	{
-		ft_printf("%d ", stk->value);
+		ft_printf("%d:%d ", stk->index, stk->value);
 		stk = stk->next;
 	}
+}
+
+int psw_getindexes(t_stk_node **start)
+{
+	t_stk_node	*to_sort;
+	t_stk_node	*to_cmpr;		
+	
+	to_sort = *start;
+	while (to_sort)
+	{
+		to_sort -> index = 0;
+		to_cmpr = *start; 
+		while (to_cmpr)
+		{
+			if (to_sort -> value >  to_cmpr -> value)
+				to_sort -> index += 1;
+			if (to_sort -> value == to_cmpr -> value && to_sort != to_cmpr) 
+			{
+				stk_clear(start);
+				return (0);
+			}
+			to_cmpr = to_cmpr -> next;
+		}
+		to_sort = to_sort -> next;
+	}
+	return (1);
 }

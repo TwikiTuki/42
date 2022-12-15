@@ -40,7 +40,6 @@ int	psw_check_range(char *inp_num)
 	len = ft_strlen(inp_num);
 	start = psw_find_start(inp_num);
 	len = len - start;
-	ft_printf("len: %d, start: %d, finalLen: %d\n", len, start, len - start);
 	if ((inp_num[0] == '-' && len < 10) || (inp_num[0] != '-' && len < 10))
 		return (1);
 	if ((inp_num[0] == '-' && len > 10) || (inp_num[0] != '-' && len > 10))
@@ -70,13 +69,14 @@ int	psw_check_general(char *inp_num)
 		i++;
 	while (inp_num[i])
 	{
-		if (inp_num[i] < '0'  || inp_num[i] > '9')
+		if (inp_num[i] < '0' || inp_num[i] > '9')
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
+/*
 int psw_getindexes(t_stk_node *start)
 {
 	t_stk_node	*to_sort;
@@ -97,3 +97,4 @@ int psw_getindexes(t_stk_node *start)
 	}
 	return (1);
 }
+*/

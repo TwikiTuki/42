@@ -1,38 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   psw_stk_operations.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrenau-v <jrenau-v@student.42barcel>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/14 12:35:54 by jrenau-v          #+#    #+#             */
+/*   Updated: 2022/12/15 17:05:19 by jrenau-v         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # include "push_swap.h"
 
 void	stk_caller(t_stk_node *stacks[2], char *action)
 {
-	if (ft_strcmp(action, "sa"))
-		stk_swap(stacks[0]);
-	else if (ft_strcmp(action, "sb"))
-		stk_swap(stacks[1]);
-	else if (ft_strcmp(action, "ss"))
+	int s;
+
+	s = (ft_strlen(action) == 2 && action[1] == 'b') || 
+			(ft_strlen(action) == 3 && action[2] == 'b');
+	if (action[0] == 's' && action[1] != 's')
+		stk_swap(stacks[s]);
+	else if (!ft_strncmp(action, "ss", 2))
 	{
 		stk_swap(stacks[0]);
 		stk_swap(stacks[1]);
 	}
-	else if (ft_strcmp(&action, "pa"))
-		stk_push(stacks[0], stacks[1]);
-	else if (ft_strcmp(&action, "pb"))
-		stk_push(stacks[1], stacks[0]);
-	else if (ft_strcmp(action, "ra"))
-		stk_rotate(&stacks[0], 0);
-	else if (ft_strcmp(action, "rb"))
-		stk_rotate(&stacks[1], 0);
-	else if (ft_strcmp(action, "rr"))
+	else if (action[0] == 'p')
+		stk_push(&stacks[s], &stacks[!s]);
+	else if (ft_strncmp(action, "rr", 2) || !ft_strncmp(action, "rrr", 2)) 
 	{
-		stk_rotate(&stacks[0], 0);
-		stk_rotate(&stacks[1], 0);
-	}
-	else if (ft_strcmp(action, "rra"))
-		stk_rotate(&stacks[0], 1);
-	else if (ft_strcmp(action, "rrb"))
-		stk_rotate(&stacks[1], 1);
-	else if (ft_strcmp(action, "rrr"))
-	{
-		stk_rotate(&stacks[0], 1);
-		stk_rotate(&stacks[1], 1);
-	}
+		stk_rotate(&stacks[0], ft_strlen(action) == 2);
+		stk_rotate(&stacks[1], ft_strlen(action) == 2);
+	}	
+	else if (action[0] == 'r' && action)
+		stk_rotate(&stacks[s], ft_strlen(action) == 2);
+	ft_printf("%s\n", action);
 }
 
 void stk_push(t_stk_node **stk1, t_stk_node **stk2)

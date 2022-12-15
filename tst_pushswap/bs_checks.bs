@@ -20,13 +20,14 @@ echo hi ${VAR}
 echo bye ${VAR2}
 '
 
-echo '\n TESTING psw_clean \n'
+echo '\n<<< TESTING psw_clean >>>\n'
 NAME=test_pswclean
 EXEC=./stuff/${NAME}
 echo testing:  ${NAME}
 make ${NAME}
 $(EXEC)
 
+echo '\n<<<<<< CHECKS >>>>>>\n'
 echo '\n<<<<<< COMPILING >>>>>>\n'
 NAME=test_checks
 EXEC=./stuff/${NAME}
@@ -37,9 +38,10 @@ echo '\n<<<<<< EXECUTING >>>>>>\n'
 echo '\n testing different inputs \n'
 fnc_test()
 {
-	echo testing: $1
+	echo testing: ${EXEC} $1
 	RES=$(${EXEC} ${1})
 	RES=$(${EXEC} $1)
+	echo ${RES}
 	if [ "${RES}" == "Error" ];
 	then
 		echo ERROR
@@ -63,3 +65,4 @@ fnc_test "2147483647 2 3 5"
 fnc_test "-2147483648 2 3 5"
 fnc_test "2147483648 2 3 5"
 fnc_test "-2147483649 2 3 5"
+
