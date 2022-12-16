@@ -19,7 +19,7 @@ int		main(int argc, char **argv)
 
 void	test_nulls(int argc, char **argv)
 {
-	t_stk_node stacks[2] = {NULL, NULL};
+	t_stk_node *stacks[2] = {NULL, NULL};
 
 	ft_printf("<<< TESTING NULLS >>>\n");
 
@@ -50,7 +50,8 @@ void	test_nulls(int argc, char **argv)
 
 void frm2_toNll_to2(int argc, char **argv)
 {
-	t_stk_node stacks[2] = {NULL, NULL};
+	t_stk_node *stacks[2] = {NULL, NULL};
+
 	ft_printf("\nEmmpting and populating stacks\n");
 	stacks[0] = stk_init(argv + 1, argc - 1);
 
@@ -71,7 +72,7 @@ void frm2_toNll_to2(int argc, char **argv)
 
 void test_rotate(int argc, char **argv)
 {
-	t_stk_node stacks[2] = {NULL, NULL};
+	t_stk_node *stacks[2] = {NULL, NULL};
 	
 	stacks[0] = stk_init(argv + 1, argc - 1);
 	stacks[1] = stk_init(argv + 1, argc - 1);
@@ -113,7 +114,7 @@ void test_rotate(int argc, char **argv)
 
 void test_swap(int argc, char **argv)
 {
-	t_stk_node stacks[2] = {NULL, NULL};
+	t_stk_node *stacks[2] = {NULL, NULL};
 	stacks[0] = stk_init(argv + 1, argc - 1);
 	stacks[1] = stk_init(argv + 1, argc - 1);
 
@@ -139,7 +140,7 @@ void test_swap(int argc, char **argv)
 
 void test_push(int argc, char **argv)
 {
-	t_stk_node stacks[2] = {NULL, NULL};
+	t_stk_node *stacks[2] = {NULL, NULL};
 	stacks[0] = stk_init(argv + 1, argc - 1);
 	
 	ft_printf("Initialized: \n");
@@ -163,7 +164,7 @@ void test_push(int argc, char **argv)
 
 void test(int argc, char **argv)
 {
-	t_stk_node stacks[2] = {NULL, NULL};
+	t_stk_node *stacks[2] = {NULL, NULL};
 	
 	// TESTING ROTATE
 	ft_printf("<<<Rotating:>>>\n");

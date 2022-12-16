@@ -20,7 +20,7 @@ void		stk_print(t_stk_node *stk);
 int			psw_getindexes(t_stk_node **start);
 
 /*psw_stk_operions*/
-void	stk_caller(t_stk_node e*stacks[2], char *action);	
+void	stk_caller(t_stk_node *stacks[2], char *action);	
 void	stk_push(t_stk_node **stk1, t_stk_node **stk2);
 void	stk_swap(t_stk_node *stk);
 void	stk_rotate(t_stk_node **stk, int reverse);
@@ -33,4 +33,4 @@ int		psw_check_general(char *inp_num);
 /*psw_algorithm*/
 void	psw_boundaries(size_t boundaries[], int chunck, size_t start_d, size_t ln);
 void	psw_semisort(t_stk_node *stacks[]);
-
+size_t	stk_len(t_stk_node *stack);

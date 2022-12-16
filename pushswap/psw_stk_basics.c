@@ -65,15 +65,30 @@ t_stk_node *stk_init(char **numbers, size_t len)
 
 void	stk_print(t_stk_node	*stk)
 {
+	size_t	bnds[4];
+	size_t	i;
+	int		chunck;
+
 	if (stk == NULL)
 	{
 		ft_printf("(empty)");
 		return ;
 	}
 
+	i = 0;
+	psw_boundaries(bnds, 0, 0, stk_len(stk));
 	while (stk)
 	{
+		if (i == bnds[0] || i == bnds[1] || i == bnds[2] || i == bnds[3])
+			ft_printf("*");
+		if (i == bnds[3])
+		{
+			ft_printf("*");
+			chunck++;
+			psw_boundaries(bnds, chunck, bnds[3] + 1, stk_len(stk)); 
+		}
 		ft_printf("%d:%d ", stk->index, stk->value);
+		i++;
 		stk = stk->next;
 	}
 }

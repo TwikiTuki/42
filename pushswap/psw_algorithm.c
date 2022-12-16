@@ -58,16 +58,14 @@ void	psw_semisort(t_stk_node *stacks[])
 	int				chunck;	
 	int				up;
 	int				target;
-	int				len;
 
 	chunck = 0;
 	up = 0;
 	bounds[3] = 0 - 1;
-	len = stk_len(stacks[0]);
 	while (chunck++ < CHUNCKS)
 	{
 		stka = stacks[0];
-		psw_boundaries(bounds, chunck, bounds[3] + 1, len);
+		psw_boundaries(bounds, chunck, bounds[3] + 1, stk_len(stacks[0]));
 		while (stka)
 		{
 			if (stka -> index >= bounds[0] && stka -> index <= bounds[3])

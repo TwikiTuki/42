@@ -1,4 +1,5 @@
 MAIN_DIR="/Users/jrenau-v/Documents/cursus/42/"
+MAIN_DIR=$(shell pwd)/../
 PRJ_DIR=$(MAIN_DIR)"pushswap/"
 TST_DIR=$(MAIN_DIR)"tst_pushswap/stuff/"
 
