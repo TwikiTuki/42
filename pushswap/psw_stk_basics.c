@@ -6,7 +6,7 @@
 /*   By: jrenau-v <jrenau-v@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 15:38:30 by jrenau-v          #+#    #+#             */
-/*   Updated: 2022/12/15 20:11:09 by jrenau-v         ###   ########.fr       */
+/*   Updated: 2022/12/17 11:57:16 by jrenau-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	stk_print(t_stk_node	*stk)
 	}
 
 	i = 0;
+	chunck = 0;
 	psw_boundaries(bnds, 0, 0, stk_len(stk));
 	while (stk)
 	{

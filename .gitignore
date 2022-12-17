@@ -1,0 +1,5 @@
+objs_nd_deps/
+**.o
+**.c
+*.o
+*.c
