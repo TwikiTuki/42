@@ -1,5 +1,9 @@
+**/objs_nd_deps/
 objs_nd_deps/
-**.o
-**.c
+**/.a
+*.a
+*\.swp
+**/.o
+**/.d
 *.o
-*.c
+*.d
