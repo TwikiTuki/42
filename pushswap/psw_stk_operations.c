@@ -6,7 +6,7 @@
 /*   By: jrenau-v <jrenau-v@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 12:35:54 by jrenau-v          #+#    #+#             */
-/*   Updated: 2022/12/15 17:05:19 by jrenau-v         ###   ########.fr       */
+/*   Updated: 2022/12/17 20:00:19 by jrenau-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	stk_caller(t_stk_node *stacks[2], char *action)
 {
 	int s;
 
+	ft_printf("%s\n", action);
 	s = (ft_strlen(action) == 2 && action[1] == 'b') || 
 			(ft_strlen(action) == 3 && action[2] == 'b');
 	if (action[0] == 's' && action[1] != 's')
@@ -27,14 +28,13 @@ void	stk_caller(t_stk_node *stacks[2], char *action)
 	}
 	else if (action[0] == 'p')
 		stk_push(&stacks[s], &stacks[!s]);
-	else if (ft_strncmp(action, "rr", 2) || !ft_strncmp(action, "rrr", 2)) 
+	else if (ft_strncmp(action, "rr", 2) || !ft_strncmp(action, "rrr", 3)) 
 	{
-		stk_rotate(&stacks[0], ft_strlen(action) == 2);
-		stk_rotate(&stacks[1], ft_strlen(action) == 2);
+		stk_rotate(&stacks[0], ft_strlen(action) == 3);
+		stk_rotate(&stacks[1], ft_strlen(action) == 3);
 	}	
-	else if (action[0] == 'r' && action)
-		stk_rotate(&stacks[s], ft_strlen(action) == 2);
-	ft_printf("%s\n", action);
+	else if (action[0] == 'r')
+		stk_rotate(&stacks[s], ft_strlen(action) == 3);
 }
 
 void stk_push(t_stk_node **stk1, t_stk_node **stk2)
@@ -64,6 +64,9 @@ void stk_swap(t_stk_node *stk)
 		aux = stk->value;
 		stk->value = stk->next->value;
 		stk->next->value = aux;
+		aux = stk->index;
+		stk->index = stk->next->index;
+		stk->next->index = aux;
 	}
 }
 
@@ -86,7 +89,8 @@ void stk_rotate(t_stk_node **stk, int reverse)
 	}
 	else if (reverse)
 	{
-		if ((*stk)) 
+		ft_printf("  sdaf  ");
+		if ((*stk)->next) 
 		{
 			last->next = *stk;
 			last->previous->next = NULL;

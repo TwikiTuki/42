@@ -6,7 +6,7 @@
 /*   By: jrenau-v <jrenau-v@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 15:12:51 by jrenau-v          #+#    #+#             */
-/*   Updated: 2022/12/15 20:18:05 by jrenau-v         ###   ########.fr       */
+/*   Updated: 2022/12/17 19:53:51 by jrenau-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void	psw_boundaries(size_t bounds[], int chunck, size_t start_d, size_t ln)
 	unsigned int	size_up;
 	unsigned int	size_down;
 
-	size = ln / CHUNCKS + ((size_t) chunck <= (ln % CHUNCKS));
-	ft_printf("size: %d\n", size);
+	size = ln / CHUNCKS + ((size_t) chunck < (ln % CHUNCKS));
 	size_up = size / 2;
 	size_down = size / 2 + size % 2;
 	bounds[0] = start_d;
@@ -66,17 +65,23 @@ void	psw_semisort(t_stk_node *stacks[])
 	{
 		stka = stacks[0];
 		psw_boundaries(bounds, chunck, bounds[3] + 1, stk_len(stacks[0]));
+		//ft_printf("outer loop\n");
 		while (stka)
 		{
+			//ft_printf("inner loop: (%d, %d) next: %p  ", stka->value, stka->index, stka->next);
 			if (stka -> index >= bounds[0] && stka -> index <= bounds[3])
 			{
 				target = stka -> index > bounds[2];
 				rotate_b(stacks, up, target);
 				stk_caller(stacks, "pa");
+				stka = stacks[0];
 				up = target;
 			}
 			else
 				stk_caller(stacks, "ra");
+			//ft_printf("end inner loop: (%d, %d) next: %p  \n", stka->value, stka->index, stka->next);
+			//ft_printf("stacks[0] %p, stacks[1] %p, stka %p  \n", stacks[1],  stacks[0], stka->next);
+
 			stka = stka -> next;
 		}
 	}

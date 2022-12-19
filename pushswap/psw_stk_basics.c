@@ -1,16 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   psw_stk_basics.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jrenau-v <jrenau-v@student.42barcel>       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/14 15:38:30 by jrenau-v          #+#    #+#             */
-/*   Updated: 2022/12/17 11:57:16 by jrenau-v         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-
 
 # include "push_swap.h"
 
@@ -67,6 +54,7 @@ void	stk_print(t_stk_node	*stk)
 {
 	size_t	bnds[4];
 	size_t	i;
+	size_t	ln;
 	int		chunck;
 
 	if (stk == NULL)
@@ -74,10 +62,10 @@ void	stk_print(t_stk_node	*stk)
 		ft_printf("(empty)");
 		return ;
 	}
-
+	ln = stk_len(stk);
 	i = 0;
 	chunck = 0;
-	psw_boundaries(bnds, 0, 0, stk_len(stk));
+	psw_boundaries(bnds, chunck, 0, ln); 
 	while (stk)
 	{
 		if (i == bnds[0] || i == bnds[1] || i == bnds[2] || i == bnds[3])
@@ -86,7 +74,11 @@ void	stk_print(t_stk_node	*stk)
 		{
 			ft_printf("*");
 			chunck++;
-			psw_boundaries(bnds, chunck, bnds[3] + 1, stk_len(stk)); 
+			psw_boundaries(bnds, chunck, bnds[3] + 1, ln); 
+		//	ft_printf("\n chunck: %d, stk_len: %d\t\t\t", chunck, ln);
+		//	for (int k = 0; k < 4; k++)
+		//		ft_printf("%d ", bnds[k]);
+		//	ft_printf("\n");
 		}
 		ft_printf("%d:%d ", stk->index, stk->value);
 		i++;
