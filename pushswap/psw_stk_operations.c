@@ -6,7 +6,7 @@
 /*   By: jrenau-v <jrenau-v@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 12:35:54 by jrenau-v          #+#    #+#             */
-/*   Updated: 2022/12/17 20:00:19 by jrenau-v         ###   ########.fr       */
+/*   Updated: 2022/12/19 12:32:43 by jrenau-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	stk_caller(t_stk_node *stacks[2], char *action)
 	}
 	else if (action[0] == 'p')
 		stk_push(&stacks[s], &stacks[!s]);
-	else if (ft_strncmp(action, "rr", 2) || !ft_strncmp(action, "rrr", 3)) 
+	else if ((!action[2] && action[1] == 'r') || (action[2] && action[2] == 'r')) 
 	{
 		stk_rotate(&stacks[0], ft_strlen(action) == 3);
 		stk_rotate(&stacks[1], ft_strlen(action) == 3);
@@ -89,7 +89,6 @@ void stk_rotate(t_stk_node **stk, int reverse)
 	}
 	else if (reverse)
 	{
-		ft_printf("  sdaf  ");
 		if ((*stk)->next) 
 		{
 			last->next = *stk;

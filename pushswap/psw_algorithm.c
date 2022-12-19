@@ -6,7 +6,7 @@
 /*   By: jrenau-v <jrenau-v@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 15:12:51 by jrenau-v          #+#    #+#             */
-/*   Updated: 2022/12/17 19:53:51 by jrenau-v         ###   ########.fr       */
+/*   Updated: 2022/12/19 13:11:15 by jrenau-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ void	psw_semisort(t_stk_node *stacks[])
 		//ft_printf("outer loop\n");
 		while (stka)
 		{
+			for(int ki = 0; ki < 4; ki++) ft_printf("%d ", ki);
+			ft_printf("   <<< ");stk_print(stacks[0]); ft_printf(" >>>\t\t"); ft_printf(" {%d} ", stka -> index == stacks[0] -> index);
+			ft_printf("<<< ");stk_print(stacks[1]); ft_printf(" >>>  ");
 			//ft_printf("inner loop: (%d, %d) next: %p  ", stka->value, stka->index, stka->next);
 			if (stka -> index >= bounds[0] && stka -> index <= bounds[3])
 			{
