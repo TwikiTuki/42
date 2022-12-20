@@ -1,13 +1,16 @@
 #! /bin/sh
-NAME="./stuff/test_semisort"
+NAME="./stuff/test_finalsort"
 echo COMPILING ${NAME}
 rm ${NAME}
-make test_semisort
-
+make test_finalsort
 echo
 echo EXECUTING ${NAME}
 
 echo
+
+echo WITH LEN 11 and easy
+${NAME} 0 1 2 3 4 5 6 7 8 9 10
+
 echo WITH LEN 50
 ${NAME} -340 32 4 20 -2 5 280 48 8 29 10 49 -11 440 36 30 -21 400 33 47 9 15 19 -16 37 -14 12 46 -0 41 -7 22 -23 25 13 100 -18 45 39 260 3 -6 24 -430 38 35 -27 17 310 -42 
 

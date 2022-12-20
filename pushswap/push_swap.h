@@ -34,3 +34,8 @@ int		psw_check_general(char *inp_num);
 void	psw_boundaries(size_t boundaries[], int chunck, size_t start_d, size_t ln);
 void	psw_semisort(t_stk_node *stacks[]);
 size_t	stk_len(t_stk_node *stack);
+
+/*psw_algorithm2*/
+void	psw_sorta(t_stk_node *stacks[2]);
+void	psw_pushback(t_stk_node *stacks[2]);
+size_t	stk_maxIndex(t_stk_node *stack);

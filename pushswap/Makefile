@@ -6,7 +6,7 @@ LIB_DIR=./libft/
 
 OBJS_ND_DEPS=./objs_nd_deps/
 MAIN=push_swap.o
-SRCS=psw_stk_basics.c psw_stk_operations.c psw_inpsanitize.c psw_algorithm.c
+SRCS=psw_stk_basics.c psw_stk_operations.c psw_inpsanitize.c psw_algorithm.c psw_algorithm2.c
 OBJS=$(addprefix $(OBJS_ND_DEPS), $(SRCS:.c=.o))
 DEPS=$(addprefix $(OBJS_ND_DEPS), $(SRCS:.c=.d))
 #OBJS=$(addprefix $(OBJS_ND_DEPS), $(SRCS:.c=.o) $(MAIN:.c=.o))
