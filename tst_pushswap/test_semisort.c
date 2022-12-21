@@ -1,8 +1,21 @@
 #include "../pushswap/push_swap.h"
 
 void test_boundaries(size_t len);
+void	big_test(int argc, char **argv);
+void	prepared_test(void);
 
 int main(int argc, char **argv)
+{
+	if(artgc > 1)
+	{
+		big_test(argc, argv);
+		return (0);
+	}
+	prepared_test((int[])  {1,2,3,4}, 4);
+	
+}
+
+void	big_test(int argc, char **argv)
 {
 	if (argc <= 1)
 		return (0);
