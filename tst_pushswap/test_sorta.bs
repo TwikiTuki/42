@@ -1,0 +1,59 @@
+#!/bin/sh
+NAME=test_sorta
+PTH="./stuff/${NAME}"
+echo COMPLINIG {$PTH}
+touch sdaf
+echo fasd >> fasd
+cat sdaf fasd
+rm $PTH
+make $NAME
+
+#STUFF="100 200 300 400 500 600" 
+STUFF="100 200 " 
+# STUFF=
+echo stuff $STUFF
+
+${PTH} 3 $STUFF
+${PTH} 2 3 $STUFF
+${PTH} 3 2 $STUFF
+${PTH} 3 $STUFF 1 
+${PTH} 3 $STUFF 0
+
+echo
+${PTH} 2 3 $STUFF 1
+${PTH} 3 2 $STUFF 1
+${PTH} 2 3 $STUFF 0
+${PTH} 3 2 $STUFF 0
+
+echo
+${PTH} 2 3 $STUFF 1 0
+${PTH} 3 2 $STUFF 1 0
+${PTH} 2 3 $STUFF 0 1
+${PTH} 3 2 $STUFF 0 1
+
+exit 0
+
+echo "
+make $NAME
+
+	if (argc <= 2)
+	{
+		ft_printf("short_tests:\n");
+		short_test((char[1][1]) {"0"}, 2);
+		short_test((char[2][1]) {"1", "0"}, 1);
+		short_test((char[2][1]) {"0", "1"}, 1);
+		short_test((char[2][1]) {"0", "2"}, 1);
+		short_test((char[2][1]) {"0", "3"}, 1);
+
+		short_test((char[3][1]) {"1", "0", "2"}, 0);
+		short_test((char[3][1]) {"0", "1", "2"}, 0);
+		short_test((char[3][1]) {"1", "0", "3"}, 0);
+		short_test((char[3][1]) {"0", "1", "3"}, 0);
+
+		short_test((char[4][1]) {"1", "0", "2", "3"}, 4);
+		short_test((char[4][1]) {"0", "1", "2", "3"}, 4);
+		short_test((char[4][1]) {"1", "0", "3", "2"}, 4);
+		short_test((char[4][1]) {"0", "1", "3", "2"}, 4);
+	
+		return (0);
+	}"

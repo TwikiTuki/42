@@ -2,12 +2,13 @@
 
 void test_boundaries(size_t len);
 
+
+
+
 int main(int argc, char **argv)
 {
 	ft_printf("-------------------------\n");
 	ft_printf("-------------------------\n");
-	if (argc <= 1)
-		return (0);
 	t_stk_node *stacks[2] = {NULL, NULL};
 
 	ft_printf("Initializing stack\n");

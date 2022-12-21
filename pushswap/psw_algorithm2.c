@@ -6,7 +6,7 @@
 /*   By: jrenau-v <jrenau-v@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 10:56:49 by jrenau-v          #+#    #+#             */
-/*   Updated: 2022/12/20 18:52:04 by jrenau-v         ###   ########.fr       */
+/*   Updated: 2022/12/21 19:48:00 by jrenau-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ void	final_sort(t_stk_node *stacks[2])
 	{
 		psw_pushback(stacks);
 		psw_sorta(stacks);
+		ft_printf("stack[0] after psw_sorta");
+		stk_print(stacks[0]);
+		ft_printf("\n");
 	}
 }
 
@@ -41,9 +44,7 @@ void	psw_pushback(t_stk_node *stacks[2])
 
 	//if (stacks[0])	
 	//	target = stacks[0]->index - 1;
-	ft_printf("getting target\n");
 	target = stk_maxIndex(stacks[1]);
-	ft_printf("got target: %zu\n", target);
 	while(1)
 	{
 		/*
@@ -84,19 +85,20 @@ void psw_sorta(t_stk_node *stacks[2])
 	if (stacks[0]->index > stacks[0]->next->index)
 		stk_caller(stacks, "sa");
 	nxt_target = stacks[0]->index;
-	ft_printf("nxt_target <= 0: %d , == 0 %d", nxt_target <= 0, nxt_target == 0);
 	nxt_target-- ;
-	ft_printf("nxt_target <= 0: %d , == 0 %d\n", nxt_target <= 0, nxt_target == 0);
 	ft_printf("stk[0]: %d, nxt: %d, penult: %d, last: %zu\n",stacks[0]->index,  nxt_target, penult, last);
 	if (penult == nxt_target || penult == nxt_target - 1) // Penult may be NULL
 	{
 		stk_caller(stacks, "rra");
 		stk_caller(stacks, "rra");
 	}
-	else if (last <= nxt_target - 1 && last >= nxt_target - 1)	
+	else if (last == nxt_target || last == nxt_target - 1)	
 		stk_caller(stacks, "rra");
 	if (stacks[0]->index > stacks[0]->next->index)
 		stk_caller(stacks, "sa");
 	if (stacks[0]->index + 1 < nxt_target)
 		stk_caller(stacks, "ra");
+	ft_printf("stacka end func");
+	stk_print(stacks[0]);
+	ft_printf("\n");
 }
