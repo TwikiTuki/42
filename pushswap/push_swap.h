@@ -12,6 +12,10 @@ typedef struct s_stk_node
 	struct s_stk_node	*next;
 } t_stk_node;
 
+/*push_swap*/
+int	main(int argc, char **argv);
+int	psw_prnt_error(void);
+
 /*psw_stk_basics.c*/
 t_stk_node	*stk_last(t_stk_node *stack);
 t_stk_node	*stk_clear(t_stk_node **stack);

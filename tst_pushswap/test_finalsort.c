@@ -1,9 +1,7 @@
 #include "../pushswap/push_swap.h"
 
 void test_boundaries(size_t len);
-
-
-
+void check_sorted(t_stk_node *stack);
 
 int main(int argc, char **argv)
 {
@@ -39,10 +37,28 @@ int main(int argc, char **argv)
 		stk_print(stacks[0]); ft_printf("\n");
 		stk_print(stacks[1]); ft_printf("\n\n");
 	}
+	ft_printf("FINISHED"); check_sorted(stacks[0]); ft_printf("\n");
+	stk_print(stacks[0]); ft_printf("\n");
+	stk_print(stacks[1]); ft_printf("\n\n");
 	ft_printf("-------------------------\n");
 	ft_printf("-------------------------\n");
 }
 
+void check_sorted(t_stk_node *stack)
+{
+	size_t	lst_i;
+	int		lst_v;
+
+	lst_i = -1;
+	lst_v = stack->value;
+	while(stack)
+	{
+		if (stack->index != lst_i + 1 || stack->value < lst_v)
+			ft_printf(" <<< ERROR >>>" );
+		return ;
+	}
+
+}
 void test_boundaries(size_t len)
 {
 	size_t	start;
