@@ -1,0 +1,41 @@
+#! /bin/sh
+
+
+NAME="./stuff/test_push_swap"
+CHECKER="./checker_linux"
+echo COMPILING ${NAME}
+rm ${NAME}
+make -C ../pushswap/
+cp	../pushswap/push_swap ${NAME}
+echo
+echo EXECUTING ${NAME}
+
+echo ""
+
+f_test ()
+{
+	echo "NUMBERS: ${1}" "[[Operations: $(${NAME} $1 | wc -l)]]" 
+	${NAME} ${1} | ${CHECKER} ${1}
+}
+
+echo WITH LEN 11 and easy
+f_test "0 1 2 3 4 5 6 7 8 9 10"
+
+echo WITH LEN 50
+f_test "340 32 4 20 -2 5 280 48 8 29 10 49 -11 440 36 30 -21 400 33 47 9 15 19 -16 37 -14 12 46 -0 41 -7 22 -23 25 13 100 -18 45 39 260 3 -6 24 -430 38 35 -27 17 310 -42" 
+
+echo
+echo WITH LEN 42
+f_test "9 32 17 2 41 8 25 18 10 34 4 19 40 28 11 27 5 26 31 38 36 21 37 12 22 7 35 39 14 3 23 13 24 29 1 20 30 0 16 15 6 33"
+
+echo
+echo WITH LEN 37
+f_test "25 9 29 12 26 33 21 19 28 10 8 17 34 30 2 35 27 7 5 11 32 20 22 36 13 23 15 4 16 18 14 0 3 31 24 6 1"
+
+echo
+echo WITH LEN 6
+f_test "31 24 37 0 50 28 2 15 17 6 56 14 36 30 20 8 10 12 25 42 4 39 33 40 23 47 38 41 34 13 27 29 53 52 54 16 1 11 45 9 51 7 5 21 43 48 18 19 32 57 22 49 44 46 55 26"
+
+echo
+echo WITH LEN 16 
+f_test "14 2 15 13 9 5 0 11 10 1 3 4 8 7 6 12"

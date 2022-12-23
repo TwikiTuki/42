@@ -88,11 +88,15 @@ void psw_sorta(t_stk_node *stacks[2])
 	long int	penult;
 
 	if(stk_len(stacks[0]) < 2)
-			return ;
+		return ;
+	if(stk_len(stacks[0]) == 2 && stacks[0]->index - stacks[0]->next->index == 3)
+		return ;
 	last = stk_last(stacks[0])->index;
 	penult = stk_last(stacks[0])->previous->index;
 	if (stacks[0]->index > stacks[0]->next->index)
 		stk_caller(stacks, "sa");
+	if(stk_len(stacks[0]) <= 2)
+		return ;
 	nxt_target = stacks[0]->index;
 	nxt_target-- ;
 	if (penult == nxt_target || penult == nxt_target - 1)
@@ -106,6 +110,4 @@ void psw_sorta(t_stk_node *stacks[2])
 		stk_caller(stacks, "sa");
 	if (stacks[0]->index + 1 < nxt_target)
 		stk_caller(stacks, "ra");
-	t_stk_node *sdaf;
-	sdaf = stacks[0] -> next -> next;
 }

@@ -10,6 +10,8 @@ int	main(int argc, char **argv)
 	if (!psw_check(argv + 1))
 		return (psw_prnt_error());
 	stacks[0] = stk_init(argv + 1, argc - 1);
+	if (!stacks[0])
+			return (psw_prnt_error());
 	stacks[1] = NULL;
 	psw_semisort(stacks);
 	while (stacks [1])

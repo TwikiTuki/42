@@ -3,6 +3,11 @@ MAIN_DIR=$(shell pwd)/../
 PRJ_DIR=$(MAIN_DIR)"pushswap/"
 TST_DIR=$(MAIN_DIR)"tst_pushswap/stuff/"
 
+default:
+	echo default
+	make -C $(PRJ_DIR)
+	mkdir -p stuff
+	cp $(PRJ_DIR)/push_swap $(TST_DIR)test_push_swap
 
 prnt:
 	@echo MAIN_DIR $(MAIN_DIR)

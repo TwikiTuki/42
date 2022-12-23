@@ -34,7 +34,7 @@ t_stk_node *stk_init(char **numbers, size_t len)
 	{
 		nw_node = malloc(sizeof (t_stk_node));	
 		if (!nw_node)
-			return (NULL); 
+			return (stk_clear(&lst_node)); 
 		nw_node->value = ft_atoi(numbers[len]);
 		nw_node->previous = NULL;
 		if (!lst_node)
@@ -46,7 +46,8 @@ t_stk_node *stk_init(char **numbers, size_t len)
 		}
 		lst_node = nw_node;
 	}
-	psw_getindexes(&nw_node);
+	if (!psw_getindexes(&nw_node))
+		return (stk_clear(&lst_node));
 	return (nw_node);
 }
 
