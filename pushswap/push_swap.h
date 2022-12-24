@@ -43,3 +43,7 @@ size_t	stk_len(t_stk_node *stack);
 void	psw_sorta(t_stk_node *stacks[2]);
 void	psw_pushback(t_stk_node *stacks[2]);
 size_t	stk_maxIndex(t_stk_node *stack);
+
+/*psw_shorts*/
+void stk_strcaller(t_stk_node *stakcs[], char *str);
+void stk_size3(t_stk_node *stakcs[2]);

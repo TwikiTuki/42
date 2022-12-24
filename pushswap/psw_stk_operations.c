@@ -16,11 +16,11 @@ void	stk_caller(t_stk_node *stacks[2], char *action)
 {
 	int s;
 	
-	if (action[0] == 'p' && action[1] == 'a')
-		ft_printf("%s\n", "pb");
-	else if (action[0] == 'p' && action[1] == 'b')
-		ft_printf("%s\n", "pa");
-	else
+//	if (action[0] == 'p' && action[1] == 'a')
+//		ft_printf("%s\n", "pb");
+//	else if (action[0] == 'p' && action[1] == 'b')
+//		ft_printf("%s\n", "pa");
+	//else
 		ft_printf("%s\n", action);
 	s = (ft_strlen(action) == 2 && action[1] == 'b') || 
 			(ft_strlen(action) == 3 && action[2] == 'b');
@@ -42,7 +42,7 @@ void	stk_caller(t_stk_node *stacks[2], char *action)
 		stk_rotate(&stacks[s], ft_strlen(action) == 3);
 }
 
-void stk_push(t_stk_node **stk1, t_stk_node **stk2)
+void stk_push(t_stk_node **stk2, t_stk_node **stk1)
 {
 	t_stk_node *moved;
 

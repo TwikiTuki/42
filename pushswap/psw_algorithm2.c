@@ -66,10 +66,10 @@ void	psw_pushback(t_stk_node *stacks[2])
 	{
 		current = stacks[1]->index;
 		if (current >= target - 1)
-			stk_caller(stacks, "pb");
+			stk_caller(stacks,"pa");
 		else if(current >= target - 3)
 		{
-			stk_caller(stacks, "pb");
+			stk_caller(stacks,"pa");
 			stk_caller(stacks, "ra");
 		}
 		if (current == target)

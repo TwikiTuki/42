@@ -70,7 +70,7 @@ void	psw_semisort(t_stk_node *stacks[])
 		{
 			if ((stacks[0] -> index >= bounds[0]) && (stacks[0] -> index <= bounds[3]))
 			{
-				stk_caller(stacks, "pa");
+				stk_caller(stacks, "pb");
 				if (stacks[1] -> index > bounds[2])
 					stk_caller(stacks, "rb");
 			}

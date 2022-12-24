@@ -57,7 +57,6 @@ void	stk_print(t_stk_node	*stk)
 	size_t	i;
 	size_t	ln;
 	int		chunck;
-
 	if (stk == NULL)
 	{
 		ft_printf("(empty)");
