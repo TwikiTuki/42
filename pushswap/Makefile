@@ -21,12 +21,12 @@ prnt:
 	echo DEPS $(DEPS)
 
 $(NAME): $(OBJS) $(OBJS_ND_DEPS)$(MAIN)
-	make -C $(LIB_DIR)
-	$(CC) $(PPF) $^ -L $(LIB_DIR) -l $(LIB) -o $(NAME) 
+	make $(G) -C $(LIB_DIR)
+	$(CC) $(PPF) $(G) $^ -L $(LIB_DIR) -l $(LIB) -o $(NAME) 
 
 $(OBJS_ND_DEPS)%.o: %.c
 	mkdir -p $(OBJS_ND_DEPS)
-	$(CC) $(PPF) -MMD -c $< -o $@
+	$(CC) $(PPF) $(G) -MMD -c $< -o $@
 
 test_sdaf2:
 	ls ../tst_pushswap/
